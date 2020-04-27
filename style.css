@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    background-color: #eae7dc;
+    width: 280px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1.5fr 2fr 2fr;
+    grid-template-areas: "date date date" "dummy1 globalStats dummy2" "countryStats countryStats countryStats";
+}
+
+#dummy1 {
+    grid-area: dummy1;
+}
+
+#dummy2 {
+    grid-area: dummy2;
+}
+
+#date {
+    grid-area: date;
+}
+
+#globalStats {
+    grid-area: globalStats;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "totalCases totalCases" "totalDeaths totalRecovered";
+}
+
+#countryStats {
+    grid-area: countryStats;
+}
+
+#totalCases {
+    grid-area: totalCases;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas: "numCases" "nameCase";
+}
+
+#numCases {
+    grid-area: numCases;
+    font-size: 32px;
+}
+
+#nameCase {
+    grid-area: nameCase;
+    font-size: 100%;
+}
+
+#totalDeaths {
+    grid-area: totalDeaths;
+    /* background-color: aquamarine; */
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas: "numDeaths" "nameDeath";
+}
+
+#numDeaths {
+    grid-area: numDeaths;
+    font-size: 18px;
+}
+
+#nameDeath {
+    grid-area: nameDeath;
+    font-size: 70%;
+}
+
+#totalRecovered {
+    grid-area: totalRecovered;
+    /* background-color: burlywood; */
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas: "numRecovered" "nameRecovered";
+}
+
+#numRecovered {
+    grid-area: numRecovered;
+    font-size: 18px;
+}
+
+#nameRecovered {
+    grid-area: nameRecovered;
+    font-size: 70%;
+}
+
+.statValue {
+    color: #e98074;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* center text */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.statName {
+    color: #8e8d8a;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* center text */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-transform: uppercase;
+}
