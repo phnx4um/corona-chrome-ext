@@ -9,7 +9,7 @@
     height: 400px;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1.5fr 2fr 2fr;
+    grid-template-rows: 1fr 2fr 2fr;
     grid-template-areas: "date date date" "dummy1 globalStats dummy2" "countryStats countryStats countryStats";
 }
 
@@ -52,7 +52,7 @@
 
 #nameCase {
     grid-area: nameCase;
-    font-size: 100%;
+    font-size: 12px;
 }
 
 #totalDeaths {
@@ -71,7 +71,7 @@
 
 #nameDeath {
     grid-area: nameDeath;
-    font-size: 70%;
+    font-size: 12px;
 }
 
 #totalRecovered {
@@ -90,7 +90,7 @@
 
 #nameRecovered {
     grid-area: nameRecovered;
-    font-size: 70%;
+    font-size: 12px;
 }
 
 .statValue {
