@@ -35,6 +35,27 @@
 
 #countryStats {
     grid-area: countryStats;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "countryName" "stat";
+}
+
+#countryName {
+    grid-area: countryName;
+    font-family: lato;
+    color: #bba871;
+    text-transform: uppercase;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+#stat {
+    grid-area: stat;
 }
 
 #totalCases {
