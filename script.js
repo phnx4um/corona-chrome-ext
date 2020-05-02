@@ -19,9 +19,9 @@ function getData() {
     coronaStats().
     then(coronaStats => {
         globalStats = coronaStats["Global"];
-        document.getElementById("totalCases").innerText = globalStats["TotalConfirmed"]
-        document.getElementById("totalDeaths").innerText = globalStats["TotalDeaths"]
-        document.getElementById("totalRecovered").innerText = globalStats["TotalRecovered"]
+        document.getElementById("numCases").innerText = globalStats["TotalConfirmed"]
+        document.getElementById("numDeaths").innerText = globalStats["TotalDeaths"]
+        document.getElementById("numRecovered").innerText = globalStats["TotalRecovered"]
     });
 }
 
