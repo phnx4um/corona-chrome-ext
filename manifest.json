@@ -6,6 +6,11 @@
     "description": "This extension displays the number of active coronavirus cases and related stuff",
     "browser_action": {
         "default_title": "corona",
+        "default_icon": {
+            "16": "images/virus16.png",
+            "24": "images/virus24.png",
+            "32": "images/virus32.png"
+        },
         "default_popup": "popup.html"
     }
 
