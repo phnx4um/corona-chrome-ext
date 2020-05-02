@@ -5,7 +5,7 @@
 
 #container {
     background-color: #eae7dc;
-    width: 280px;
+    width: 320px;
     height: 380px;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
@@ -37,8 +37,18 @@
     grid-area: countryStats;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "div1" "countryName" "stats" "update";
+    grid-template-rows: 1fr 1fr 1fr 1fr 0.25fr;
+    grid-template-areas: "div1" "countryName" "stats" "prenext" "update";
+}
+
+#prenext {
+    display: flex;
+    justify-content: center;
+}
+
+.style {
+    color: #8e8d8a;
+    cursor: pointer;
 }
 
 #div1 {
