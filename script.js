@@ -17,8 +17,12 @@ var countries = [
 ]
 
 const nextCountryButton = document.getElementById("next")
-nextCountryButton.addEventListener("click", getCountryStats);
+nextCountryButton.addEventListener("click", getNextCountry);
 
+const prevCountryButton = document.getElementById("prev")
+prevCountryButton.addEventListener("click", getPrevCountry);
+
+// API call
 async function coronaStats() {
     let response = await fetch(CORONA_STAT_ENDPOINT);
     let stats = await response.json();
@@ -26,16 +30,7 @@ async function coronaStats() {
     return stats;
 }
 
-function filterValue(obj, key, value) {
-    return obj.find(function(v) { return v[key] === value });
-}
-
-function populateCountryUI(countryStats) {
-    document.getElementById("countryCaseCount").innerText = countryStats["TotalConfirmed"]
-    document.getElementById("countryDeathCount").innerText = countryStats["TotalDeaths"]
-    document.getElementById("countryRecCount").innerText = countryStats["TotalRecovered"]
-}
-
+// utility functions
 function capitalizeFirstLetter(string) {
     let words = string.toUpperCase().split(" ")
     for (var i = 0; i < words.length; i++) {
@@ -44,7 +39,28 @@ function capitalizeFirstLetter(string) {
     return words.join(" ")
 }
 
-function getCountryStats() {
+function filterValue(obj, key, value) {
+    return obj.find(function(v) { return v[key] === value });
+}
+
+
+function populateCountryUI(countryStats) {
+    document.getElementById("countryCaseCount").innerText = countryStats["TotalConfirmed"]
+    document.getElementById("countryDeathCount").innerText = countryStats["TotalDeaths"]
+    document.getElementById("countryRecCount").innerText = countryStats["TotalRecovered"]
+}
+
+function getCountryStats(countryIndex) {
+    let country = countries[countryIndex]
+    console.log(country)
+    document.getElementById("countryName").innerText = country
+    let countryStats = filterValue(countriesStats, "Country", country)
+    console.log(countryStats)
+    populateCountryUI(countryStats)
+}
+
+// callback function for next button
+function getNextCountry() {
     let countryName = document.getElementById("countryName").innerText;
     console.log(countryName);
     // get index of the element 
@@ -57,16 +73,27 @@ function getCountryStats() {
     } else {
         countryIndex = countryIndex + 1
     }
-    // get next country
-    let country = countries[countryIndex]
-    console.log(country)
-    document.getElementById("countryName").innerText = country
-    let countryStats = filterValue(countriesStats, "Country", country)
-    console.log(countryStats)
-    populateCountryUI(countryStats)
+    getCountryStats(countryIndex)
 }
 
+// callback function for prev button
+function getPrevCountry() {
+    let countryName = document.getElementById("countryName").innerText;
+    console.log(countryName);
+    // get index of the element 
+    let countryIndex = countries.indexOf(capitalizeFirstLetter(countryName))
+    console.log(countryIndex);
+    //  get index for next country 
+    if (countryIndex === 0) {
+        // its the first element. set index to last element => countries.length - 1
+        countryIndex = countries.length - 1
+    } else {
+        countryIndex = countryIndex - 1
+    }
+    getCountryStats(countryIndex)
+}
 
+// this is called when popup is opened
 function getData() {
     coronaStats().
     then(coronaStats => {
