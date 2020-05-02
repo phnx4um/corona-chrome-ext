@@ -6,10 +6,10 @@
 #container {
     background-color: #eae7dc;
     width: 280px;
-    height: 400px;
+    height: 380px;
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1fr 2fr 2fr;
+    grid-template-rows: 1fr 2fr 2fr 1fr;
     grid-template-areas: "date date date" "dummy1 globalStats dummy2" "countryStats countryStats countryStats";
 }
 
@@ -35,6 +35,103 @@
 
 #countryStats {
     grid-area: countryStats;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "div1" "countryName" "stats" "update";
+}
+
+#div1 {
+    grid-area: div1;
+}
+
+#update {
+    grid-area: update;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #a08123;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.dividerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dividerContainer hr {
+    flex-grow: 0.75;
+    border: 0.4px dotted #a08123;
+}
+
+#countryName {
+    grid-area: countryName;
+    font-family: 'Open Sans', 'Lato', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #8e8d8a;
+    text-transform: uppercase;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+    font-weight: lighter;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+}
+
+#stats {
+    grid-area: stats;
+    display: grid;
+    grid-template-columns: 0.25fr 1fr 1fr 1fr 0.25fr;
+    grid-template-rows: 100%;
+    grid-template-areas: ". countryDeaths countryCases countryRecovered .";
+}
+
+#countryDeaths {
+    grid-area: countryDeaths;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "countryDeathCount" "nameCountryDeath";
+}
+
+#countryDeathCount {
+    grid-area: countryDeathCount;
+}
+
+#nameCountryDeath {
+    grid-area: nameCountryDeath;
+}
+
+#countryCases {
+    grid-area: countryCases;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "countryCaseCount" "nameCountryCase";
+}
+
+#countryCaseCount {
+    grid-area: countryCaseCount;
+}
+
+#nameCountryCase {
+    grid-area: nameCountryCase;
+}
+
+#countryRecovered {
+    grid-area: countryRecovered;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "countryRecCount" "nameCountryRec";
+}
+
+#countryRecCount {
+    grid-area: countryRecCount;
+}
+
+#nameCountryRec {
+    grid-area: nameCountryRec;
 }
 
 #totalCases {
@@ -103,11 +200,30 @@
 }
 
 .statName {
-    color: #8e8d8a;
+    color: #bba871;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /* center text */
     display: flex;
     align-items: flex-start;
     justify-content: center;
     text-transform: uppercase;
+}
+
+.countryStatVal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #e98074;
+    font-size: 18px;
+}
+
+.countryStatName {
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    font-size: 8px;
+    text-transform: uppercase;
+    color: #bba871;
 }
