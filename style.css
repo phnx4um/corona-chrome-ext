@@ -3,14 +3,31 @@
     padding: 0;
 }
 
+body {
+    background-image: url('30.gif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    width: 320px;
+    height: 380px;
+}
+
 #container {
+    display: none;
     background-color: #eae7dc;
     width: 320px;
     height: 380px;
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-rows: 1fr 2fr 2fr 1fr;
     grid-template-areas: "date date date" "dummy1 globalStats dummy2" "countryStats countryStats countryStats";
+}
+
+#err {
+    display: grid;
+    justify-content: center;
+    color: #bba871;
+    padding-top: 95%;
 }
 
 #dummy1 {

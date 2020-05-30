@@ -25,9 +25,23 @@ prevCountryButton.addEventListener("click", getPrevCountry);
 // API call
 async function coronaStats() {
     let response = await fetch(CORONA_STAT_ENDPOINT);
-    let stats = await response.json();
-    console.log(response);
-    return stats;
+    if (response.ok) { // if HTTP-status is 200-299
+        // get the response body (the method explained below)
+        let stats = await response.json();
+        console.log(response);
+        // REMOVE LOADING SCREEN
+        document.querySelector("body").style.backgroundImage = "none";
+        // DISPLAY STATS
+        document.getElementById("container").style.display = "grid";
+        return stats;
+    } else {
+        // REMOVE LOADING SCREEN
+        document.querySelector("body").style.backgroundImage = "none";
+        console.log(response.status, response.text);
+        err_container = document.getElementById("container");
+        err_container.setAttribute("id", "err")
+        err_container.innerHTML = "HTTP-ERROR: " + response.status + " TRY AGAIN"
+    }
 }
 
 // utility functions
@@ -103,6 +117,7 @@ function getPrevCountry() {
 function getData() {
     coronaStats().
     then(coronaStats => {
+        print(coronaStats)
         let globalStats = coronaStats["Global"];
         countriesStats = coronaStats["Countries"];
         let date = coronaStats["Date"];
@@ -116,8 +131,8 @@ function getData() {
         document.getElementById("updatetime").innerText = date;
 
         //country stats
-        // let country = "India";
-        let country = document.getElementById("countryName").innerText;
+        let country = "India";
+        // let country = document.getElementById("countryName").innerText;
         // get the stats for the country from countryStats
         let countryStats = filterValue(countriesStats, "Country", country);
         console.log(countryStats);
