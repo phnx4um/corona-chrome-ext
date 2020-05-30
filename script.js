@@ -117,7 +117,7 @@ function getPrevCountry() {
 function getData() {
     coronaStats().
     then(coronaStats => {
-        print(coronaStats)
+        console.log(coronaStats)
         let globalStats = coronaStats["Global"];
         countriesStats = coronaStats["Countries"];
         let date = coronaStats["Date"];
