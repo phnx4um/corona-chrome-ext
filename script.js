@@ -44,25 +44,9 @@ async function coronaStats() {
     }
 }
 
-// utility functions
-function capitalizeFirstLetter(string) {
-    let lowercase_list = ["AND", "OF"];
-    let words = string.toUpperCase().split(" ");
-    for (var i = 0; i < words.length; i++) {
-        if (lowercase_list.includes(words[i])) {
-            words[i] = words[i].toLowerCase();
-            continue;
-        }
-        words[i] = words[i].charAt(0) + words[i].slice(1).toLowerCase();
-    }
-    console.log(words.join(" "));
-    return words.join(" ");
-}
-
 function filterValue(obj, key, value) {
-    return obj.find(function(v) { return v[key] === value });
+    return obj.find(function(v) { return v[key].toLowerCase() === value.toLowerCase() });
 }
-
 
 function populateCountryUI(countryStats) {
     document.getElementById("countryCaseCount").innerText = countryStats["TotalConfirmed"];
@@ -79,38 +63,48 @@ function getCountryStats(countryIndex) {
     populateCountryUI(countryStats);
 }
 
-// callback function for next button
-function getNextCountry() {
+function getCurrentCountryIndex() {
     let countryName = document.getElementById("countryName").innerText;
     console.log(countryName);
-    // get index of the element 
-    let countryIndex = countries.indexOf(capitalizeFirstLetter(countryName))
-    console.log(countryIndex);
+    let currentCountryIndex = countries.findIndex(item => countryName.toLowerCase() === item.toLowerCase());
+    console.log(currentCountryIndex);
+    return currentCountryIndex;
+}
+
+// callback function for next button
+function getNextCountry() {
+    let countryIndex;
+    let nextCountryIndex
+
+    //get current country index
+    countryIndex = getCurrentCountryIndex()
+
     //  get index for next country 
     if (countryIndex === (countries.length - 1)) {
         // its the last element. set index to 1st element => 0
-        countryIndex = 0;
+        nextCountryIndex = 0;
     } else {
-        countryIndex = countryIndex + 1;
+        nextCountryIndex = countryIndex + 1;
     }
-    getCountryStats(countryIndex);
+    getCountryStats(nextCountryIndex);
 }
 
 // callback function for prev button
 function getPrevCountry() {
-    let countryName = document.getElementById("countryName").innerText;
-    console.log(countryName);
-    // get index of the element 
-    let countryIndex = countries.indexOf(capitalizeFirstLetter(countryName));
-    console.log(countryIndex);
-    //  get index for next country 
+    let countryIndex;
+    let prevCountryIndex;
+
+    //get current country index
+    countryIndex = getCurrentCountryIndex()
+
+    //  get index for prev country 
     if (countryIndex === 0) {
         // its the first element. set index to last element => countries.length - 1
-        countryIndex = countries.length - 1;
+        prevCountryIndex = countries.length - 1;
     } else {
-        countryIndex = countryIndex - 1;
+        prevCountryIndex = countryIndex - 1;
     }
-    getCountryStats(countryIndex);
+    getCountryStats(prevCountryIndex);
 }
 
 // this is called when popup is opened
@@ -131,6 +125,7 @@ function getData() {
         document.getElementById("updatetime").innerText = date;
 
         //country stats
+        // TODO: add CHROME APIs Storage??? to save the your country preference
         let country = "India";
         // let country = document.getElementById("countryName").innerText;
         // get the stats for the country from countryStats
