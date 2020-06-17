@@ -111,29 +111,32 @@ function getPrevCountry() {
 function getData() {
     coronaStats().
     then(coronaStats => {
-        console.log(coronaStats)
-        let globalStats = coronaStats["Global"];
-        countriesStats = coronaStats["Countries"];
-        let date = coronaStats["Date"];
+            console.log(coronaStats)
+            let globalStats = coronaStats["Global"];
+            countriesStats = coronaStats["Countries"];
+            let date = coronaStats["Date"];
 
-        //  global stats
-        document.getElementById("numCases").innerText = globalStats["TotalConfirmed"];
-        document.getElementById("numDeaths").innerText = globalStats["TotalDeaths"];
-        document.getElementById("numRecovered").innerText = globalStats["TotalRecovered"];
+            //  global stats
+            document.getElementById("numCases").innerText = globalStats["TotalConfirmed"];
+            document.getElementById("numDeaths").innerText = globalStats["TotalDeaths"];
+            document.getElementById("numRecovered").innerText = globalStats["TotalRecovered"];
 
-        //date
-        document.getElementById("updatetime").innerText = date;
+            //date
+            document.getElementById("updatetime").innerText = date;
 
-        //country stats
-        // TODO: add CHROME APIs Storage??? to save the your country preference
-        let country = "India";
-        // let country = document.getElementById("countryName").innerText;
-        // get the stats for the country from countryStats
-        let countryStats = filterValue(countriesStats, "Country", country);
-        console.log(countryStats);
-        populateCountryUI(countryStats);
+            //country stats
+            // TODO: add CHROME APIs Storage??? to save the your country preference
+            let country = "India";
+            // let country = document.getElementById("countryName").innerText;
+            // get the stats for the country from countryStats
+            let countryStats = filterValue(countriesStats, "Country", country);
+            console.log(countryStats);
+            populateCountryUI(countryStats);
 
-    });
+        })
+        .catch(function(e) {
+            console.error(e.message); // "oh, no!"
+        });
 }
 
 getData()
